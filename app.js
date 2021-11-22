@@ -91,11 +91,11 @@ app.post("/", (req, res) => {
 });
 
 app.post("/delete", (req, res) => {
-    //console.log(req.body.itemId);
-    const deleteId = req.body.itemId;
-    const pushList = req.body.list;
+    //console.log(req.body);
+    const deleteId = req.body.checkbox;
+    const pushList = req.body.listName;
 
-    if (!pushList) {
+    if (pushList === "Today") {
         Item.findByIdAndRemove(deleteId, (errors) => {
             if (errors) {
                 console.log(errors);
