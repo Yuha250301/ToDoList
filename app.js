@@ -40,9 +40,9 @@ app.get("/", (req, res) => {
             console.log(errors);
         } else {
             // console.log(results);
-            res.render("index", {
-                kindOfDay: "Today",
-                listItem: results,
+            res.render("list", {
+                listTitle: "Today",
+                newListItems: results,
             });
         }
     });
@@ -50,6 +50,7 @@ app.get("/", (req, res) => {
 
 app.get("/:customListName", (req, res) => {
     const customListName = _.capitalize(req.params.customListName);
+    if (customListName === "Favicon.ico") return;
     List.findOne({ name: customListName }, (err, foundList) => {
         if (err) {
             console.log("doesn't exist");
